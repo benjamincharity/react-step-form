@@ -1,8 +1,12 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { StepForm } from '../components/step-form'
+import { StepForm, StepFormProps } from '../components/step-form'
 import { NameStep } from './components/name-step'
 import { EmailStep } from './components/email-step'
+import { WelcomeStep } from './components/welcome-step'
+import { TypeformNameStep } from './components/typeform-demo/typeform-name-step'
+import { TypeformEmailStep } from './components/typeform-demo/typeform-email-step'
+import { useState } from 'react'
 
 const meta = {
   title: 'StepForm/Styling',
@@ -55,4 +59,56 @@ export const CustomStyles = {
         'w-32 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 px-4 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-200 flex items-center justify-center gap-2',
     },
   },
+}
+
+function TypeformTemplate(args: StepFormProps) {
+  const [data, setData] = useState<Record<string, any>>({})
+  console.log(data)
+
+  return (
+    <div className="h-screen bg-gradient-to-br from-[#fff3e9] to-[#ffd7d1]">
+      <StepForm {...args} validateStep={(stepId, stepData) => {
+        setData(stepData as any)
+        return true
+      }} />
+    </div>
+  )
+}
+
+export const Typeform: Story = {
+  args: {
+    welcomeCover: WelcomeStep,
+    steps: [
+      {
+        id: 'step1',
+        component: TypeformNameStep,
+      },
+      {
+        id: 'step2',
+        component: TypeformEmailStep,
+      },
+    ],
+    onComplete: (data) => console.log('Form completed:', data),
+    className: 'h-full',
+    hideEnterHint: true,
+    stepIndicatorProps: {
+      stepNumberClassName: 'hidden',
+      connectionLineClassName: 'hidden',
+      activeStepClassName: 'hidden',
+      completedStepClassName: 'hidden',
+      inactiveStepClassName: 'hidden',
+      footerNavButtonClassName: 'w-10 h-10 flex items-center justify-center bg-rose-400/10',
+      footerNavButtonActiveClassName: 'text-rose-400 hover:bg-rose-400/20',
+      footerNavButtonInactiveClassName: 'text-rose-400/40 cursor-not-allowed',
+    },
+    submitButtonProps: {
+      className:
+        'bg-rose-400 text-white px-6 py-2 rounded-full disabled:opacity-50',
+    }
+  },
+  render: (args) => (
+    <div className="h-screen bg-gradient-to-br from-[#fff3e9] to-[#ffd7d1]">
+      <TypeformTemplate {...args} />
+    </div>
+  ),
 }

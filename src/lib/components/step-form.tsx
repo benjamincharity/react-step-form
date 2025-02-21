@@ -98,11 +98,15 @@ export interface StepFormProps {
     inactiveStepClassName?: string
     connectionLineClassName?: string
     stepNumberClassName?: string
+    footerNavButtonClassName?: string
+    footerNavButtonActiveClassName?: string
+    footerNavButtonInactiveClassName?: string
   }
   submitButtonProps?: {
     className?: string
   }
   validateStep?: (stepId: string, stepData: unknown) => boolean | Promise<boolean>
+  hideEnterHint?: boolean
 }
 
 export function StepForm({
@@ -116,6 +120,7 @@ export function StepForm({
   stepIndicatorProps,
   submitButtonProps,
   validateStep,
+  hideEnterHint,
 }: StepFormProps) {
   const fallbackId = useId()
   const formId = providedId || fallbackId
@@ -412,6 +417,11 @@ export function StepForm({
     return () => content.removeEventListener('wheel', preventWheel)
   }, [currentStepIndex, isCompleted, handleNext, handlePrevious])
 
+  // Update the footer navigation buttons in the render section
+  const footerNavButtonBaseClass = stepIndicatorProps?.footerNavButtonClassName || 'p-1.5'
+  const footerNavButtonActiveClass = stepIndicatorProps?.footerNavButtonActiveClassName || 'hover:bg-gray-50'
+  const footerNavButtonInactiveClass = stepIndicatorProps?.footerNavButtonInactiveClassName || 'text-gray-400 cursor-not-allowed'
+
   return (
     <StepValidationContext.Provider value={{ validateStep }}>
       <div className={`flex flex-col h-full relative ${className || ''}`}>
@@ -506,10 +516,10 @@ export function StepForm({
                   </button>
 
                   <div data-e2e="step-footer-navigation" className="flex items-center gap-2">
-                    <div className="flex border rounded overflow-hidden">
+                    <div className="flex rounded-full overflow-hidden">
                       <button
-                        className={`p-1.5 ${
-                          currentStepIndex === 0 ? 'text-gray-400 cursor-not-allowed' : 'hover:bg-gray-50'
+                        className={`${footerNavButtonBaseClass} border-r border-rose-400/20 ${
+                          currentStepIndex === 0 ? footerNavButtonInactiveClass : footerNavButtonActiveClass
                         }`}
                         disabled={currentStepIndex === 0}
                         onClick={handlePrevious}
@@ -518,10 +528,10 @@ export function StepForm({
                         <ChevronUp className="w-4 h-4" />
                       </button>
                       <button
-                        className={`p-1.5 border-l ${
+                        className={`${footerNavButtonBaseClass} ${
                           currentStepIndex === steps.length - 1 || !canProceedToNextStep()
-                            ? 'text-gray-400 cursor-not-allowed'
-                            : 'hover:bg-gray-50'
+                            ? footerNavButtonInactiveClass
+                            : footerNavButtonActiveClass
                         }`}
                         disabled={currentStepIndex === steps.length - 1 || !canProceedToNextStep()}
                         onClick={handleNext}
@@ -530,7 +540,7 @@ export function StepForm({
                         <ChevronDown className="w-4 h-4" />
                       </button>
                     </div>
-                    <PressEnterHint />
+                    {!hideEnterHint && <PressEnterHint />}
                   </div>
                 </div>
               </div>
