@@ -163,7 +163,12 @@ The StepForm supports two levels of validation:
 
 ```tsx
 const ValidatedStep = ({ onStepComplete, validate }) => {
-  const { register, handleSubmit, trigger, getValues } = useForm({
+  const {
+    register,
+    handleSubmit,
+    trigger,
+    getValues,
+  } = useForm({
     resolver: zodResolver(schema),
     mode: 'onChange',
   })
@@ -219,7 +224,11 @@ const validateStep = (stepId: string, stepData: unknown) => {
   }
 }
 
-;<StepForm steps={steps} validateStep={validateStep} onComplete={handleComplete} />
+<StepForm
+  steps={steps}
+  validateStep={validateStep}
+  onComplete={handleComplete}
+/>
 ```
 
 Key validation behaviors:
@@ -240,7 +249,7 @@ The form automatically saves progress to localStorage:
 
 ```tsx
 <StepForm
-  id="signup-form" // Optional unique ID for storage
+  id="signup-form"  // Optional unique ID for storage
   steps={steps}
   onComplete={handleComplete}
 />
@@ -248,18 +257,18 @@ The form automatically saves progress to localStorage:
 
 ## Props
 
-| Prop                 | Type                                                                 | Description                     |
-| -------------------- | -------------------------------------------------------------------- | ------------------------------- |
-| `id`                 | `string`                                                             | Unique form identifier          |
-| `steps`              | `Step[]`                                                             | Array of step configurations    |
-| `onComplete`         | `(data: Record<string, any>) => void`                                | Callback when form completes    |
-| `welcomeCover`       | `Component \| Object`                                                | Welcome screen customization    |
-| `completeStep`       | `Component \| Object`                                                | Completion screen customization |
-| `className`          | `string`                                                             | Container CSS class             |
-| `stepIndicatorProps` | `Object`                                                             | Step indicator styling          |
-| `submitButtonProps`  | `Object`                                                             | Submit button styling           |
-| `debugMode`          | `boolean`                                                            | Enable debug features           |
-| `validateStep`       | `(stepId: string, stepData: unknown) => boolean \| Promise<boolean>` | Form-level validation function  |
+| Prop                 | Type                                  | Description                     |
+| -------------------- | ------------------------------------- | ------------------------------- |
+| `id`                 | `string`                              | Unique form identifier          |
+| `steps`              | `Step[]`                              | Array of step configurations    |
+| `onComplete`         | `(data: Record<string, any>) => void` | Callback when form completes    |
+| `welcomeCover`       | `Component \| Object`                 | Welcome screen customization    |
+| `completeStep`       | `Component \| Object`                 | Completion screen customization |
+| `className`          | `string`                              | Container CSS class             |
+| `stepIndicatorProps` | `Object`                              | Step indicator styling          |
+| `submitButtonProps`  | `Object`                              | Submit button styling           |
+| `debugMode`          | `boolean`                             | Enable debug features           |
+| `validateStep`       | `(stepId: string, stepData: unknown) => boolean \| Promise<boolean>` | Form-level validation function |
 
 ## License
 
