@@ -1,0 +1,38 @@
+# Don't include source files or configs
+src/
+*.ts
+*.tsx
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+.vitepress/
+.storybook/
+__tests__/
+__mocks__/
+
+# Don't include build/config tools
+.vscode/
+.env
+*.log
+*.lock
+*.bak
+coverage/
+node_modules/
+dist/storybook/
+
+# Project-specific ignores
+tsconfig.json
+vite.config.ts
+release-please.yml
+*.md
+*.yml
+.husky/
+.commitlintrc.js
+.eslintrc.js
+.prettierrc
+.prettierignore
+lint-staged.config.js
+
+# npm-specific
+.npmrc
