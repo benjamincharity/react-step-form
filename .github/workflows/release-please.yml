@@ -19,7 +19,7 @@ jobs:
         with:
           release-type: node
           default-branch: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_RELEASE_TOKEN }}
 
       - name: Checkout
         uses: actions/checkout@v3
