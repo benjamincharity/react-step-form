@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/benjamincharity/react-step-form/compare/v1.1.0...v1.1.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* correct npm publish command ([601c00c](https://github.com/benjamincharity/react-step-form/commit/601c00c787d2623fafbf43a1646acffddaa517fa))
+
 ## [1.1.0](https://github.com/benjamincharity/react-step-form/compare/v1.0.0...v1.1.0) (2025-03-26)
 
 
