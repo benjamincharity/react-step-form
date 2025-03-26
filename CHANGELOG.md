@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/benjamincharity/react-step-form/compare/v1.1.1...v1.1.2) (2025-03-26)
+
+
+### Bug Fixes
+
+* trigger patch release ([73db10f](https://github.com/benjamincharity/react-step-form/commit/73db10f9c979b69d556e6ce2733cb48e81fd27d8))
+
 ## [1.1.1](https://github.com/benjamincharity/react-step-form/compare/v1.1.0...v1.1.1) (2025-03-26)
 
 
