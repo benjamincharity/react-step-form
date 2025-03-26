@@ -11,6 +11,8 @@ A headless, unstyled React component library for building animated, stateful mul
 - 🧩 Optional welcome and completion screens
 - 🪶 Zero styling or UI constraints — fully unstyled/headless
 
+Demo: https://benjamincharity.github.io/react-step-form/
+
 ## 📦 Installation
 
 ```bash
